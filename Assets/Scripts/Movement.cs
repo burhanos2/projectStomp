@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(InputHandler))]
 public class Movement : MonoBehaviour {
 
     private Rigidbody2D rb2d;
@@ -10,9 +10,9 @@ public class Movement : MonoBehaviour {
     private Vector2 direction;
 
     [SerializeField]
-    private float speed;
+    private readonly float speed;
 
-	void Awake ()
+	void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         inputHandler = GetComponent<InputHandler>();
@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour {
     private void Update()
     {
         // xAxis var is temporary!!!
-        Vector2 direction = new Vector2(inputHandler.xAxis[0], 0);
+        direction = new Vector2(inputHandler.xAxis[0], 0);
     }
 
     private void FixedUpdate()
@@ -31,6 +31,6 @@ public class Movement : MonoBehaviour {
 
     private void Move()
     {
-        rb2d.AddForce(direction, ForceMode2D.Force);
+        rb2d.AddForce(direction * speed, ForceMode2D.Force);
     }
 }

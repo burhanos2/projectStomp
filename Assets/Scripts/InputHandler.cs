@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InputHandler {
+public class InputHandler : MonoBehaviour {
 
     public float[] xAxis;
 
@@ -13,10 +13,10 @@ public class InputHandler {
 
     void Update ()
     {
-        float xAxisMovement1 = Input.GetAxisRaw("Horizontal1") * Time.deltaTime;
-        float xAxisMovement2 = Input.GetAxisRaw("Horizontal2") * Time.deltaTime;
-        float xAxisMovement3 = Input.GetAxisRaw("Horizontal3") * Time.deltaTime;
-        float xAxisMovement4 = Input.GetAxisRaw("Horizontal4") * Time.deltaTime;
+        float xAxisMovement1 = Input.GetAxisRaw("Horizontal1");
+        float xAxisMovement2 = Input.GetAxisRaw("Horizontal2");
+        float xAxisMovement3 = Input.GetAxisRaw("Horizontal3");
+        float xAxisMovement4 = Input.GetAxisRaw("Horizontal4");
 
         xAxis[0] = xAxisMovement1;
         xAxis[1] = xAxisMovement2;
