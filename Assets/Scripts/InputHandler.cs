@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputHandler
 {
-
+    private float axis;
     public bool GetInteractButton()
     {
         if (Input.GetButtonDown("Interact") == true)
@@ -19,9 +17,9 @@ public class InputHandler
         return false;
     }
 
-    public float Move(float axis)
+    public float xAxis
     {
-        axis = Input.GetAxisRaw("Horizontal");
-        return axis;
+        get { return axis = Input.GetAxisRaw("Horizontal"); }
     }
+
 }
