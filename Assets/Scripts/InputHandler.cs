@@ -1,26 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class InputHandler : MonoBehaviour {
+public class InputHandler
+{
 
-    public float[] xAxis;
-
-    private void Awake()
+    public bool GetInteractButton()
     {
-        xAxis = new float[3];
-
+        if (Input.GetButtonDown("Interact") == true)
+        { return true; }
+        return false;
     }
 
-
-    void Update ()
+    public bool GetJumpButton()
     {
-        float xAxisMovement1 = Input.GetAxisRaw("Horizontal1");
-        float xAxisMovement2 = Input.GetAxisRaw("Horizontal2");
-        float xAxisMovement3 = Input.GetAxisRaw("Horizontal3");
-        float xAxisMovement4 = Input.GetAxisRaw("Horizontal4");
+        if (Input.GetButtonDown("Jump") == true)
+        { return true; }
+        return false;
+    }
 
-        xAxis[0] = xAxisMovement1;
-        xAxis[1] = xAxisMovement2;
-        xAxis[2] = xAxisMovement3;
-        xAxis[3] = xAxisMovement4;
+    public float Move(float axis)
+    {
+        axis = Input.GetAxisRaw("Horizontal");
+        return axis;
     }
 }
