@@ -6,7 +6,7 @@ Devs: Sem Burhan Brandon Jochem
 
 Artists: Jelle Quincy Brett
 
-Trello: 
+Trello: https://trello.com/b/0uBhJzyW/project-stomp
 
 Play:  
 
