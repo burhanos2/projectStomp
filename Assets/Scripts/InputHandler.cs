@@ -2,7 +2,6 @@
 
 public class InputHandler
 {
-    private float axis;
     public bool GetInteractButton()
     {
         if (Input.GetButtonDown("Interact") == true)
@@ -17,9 +16,9 @@ public class InputHandler
         return false;
     }
 
-    public float xAxis
+    public float Xaxis
     {
-        get { return axis = Input.GetAxisRaw("Horizontal"); }
+        get { return Input.GetAxisRaw("Horizontal"); }
     }
 
 }
