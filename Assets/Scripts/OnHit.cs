@@ -6,44 +6,59 @@ public class OnHit {
 
     private PlayerInfo playerInfo = new PlayerInfo();
 
-    public void RemoveHP(int amount)
+    private MonoBehaviour _mb = new MonoBehaviour();
+
+    public void ExecuteEvents()
     {
-        playerInfo.Health -=1;
+        RemoveHP(1);
+
+        if (playerInfo.Health > 0)
+        {
+            MakeInvincible(2);
+            IncreaseSpeed(1.25f, 2);
+        }
+    }
+
+    private void RemoveHP(int amount)
+    {
+        playerInfo.Health -= amount;
         CheckIfDead();
     }
 
 
-    public void MakeInvincible(bool value)
+    private void MakeInvincible(float waitTime)
     {
-        playerInfo.Invincible = value;
         
         if (!playerInfo.Invincible) // als de player niet invincible is
         {
-            // hier komt de code wanneer de player niet invincible is (dus een coroutine die een aantal seconden duurt) <<<<<<<<<<<<<<<<<<<<<<
             playerInfo.Invincible = true;
-        } else if (playerInfo.Invincible) // als de player wel invincible is
+            _mb.StartCoroutine(Wait(waitTime));
+            playerInfo.Invincible = false;
+            return;
+        }
+
+        else if (playerInfo.Invincible) // als de player wel invincible is
         {
             playerInfo.Invincible = false;
+            return;
         }
-    }
-    /* \\\\\\\\\\ ik heb ff hulp nodig van iemand die een loop weet die wel in een script zonder MonoBehaviour kan//////////
+        return;
+    }      
       
-      
-    public void IncreaseSpeed(float multiplier, float waitDuration)
+    private void IncreaseSpeed(float multiplier, float waitTime)
     {
         float oldSpeed = playerInfo.Speed;
         playerInfo.Speed *= multiplier;
-        yield return StartCoroutine(SetOldSpeed(3)); <<<<<<<<<<<<<<<<<<<<<<
-        
+        _mb.StartCoroutine(Wait(waitTime));
+
         playerInfo.Speed = oldSpeed;
     }
 
-    private IEnumerator SetOldSpeed(float waitTime) <<<<<<<<<<<<<<<<<<<<<<
+    private IEnumerator Wait(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        playerInfo.Speed = oldSpeed;
     }
-    */
+    
 
     private void CheckIfDead()
     {
