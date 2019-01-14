@@ -32,6 +32,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Awake()
     {
+        Speed = 3;
         Health = maxHealth;
     }
 
