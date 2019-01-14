@@ -21,4 +21,9 @@ public class InputHandler
         get { return Input.GetAxisRaw("Horizontal"); }
     }
 
+    public float Yaxis
+    {
+        get { return Input.GetAxisRaw("Down"); }
+    }
+
 }
