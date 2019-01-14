@@ -4,7 +4,7 @@ public class InputHandler
 {
     public bool GetInteractButton()
     {
-        if (Input.GetButtonDown("Interact") == true)
+        if (Input.GetButtonDown("Interact"))
         { return true; }
         return false;
     }
@@ -12,34 +12,37 @@ public class InputHandler
 
     public bool GetJumpButtonUp()
     {
-        if (Input.GetButtonUp("Jump") == true)
+        if (Input.GetButtonUp("Jump"))
         { return true; }
         return false;
     }
+    // jump button released ^
 
     public bool GetJumpButton()
     {
-        if (Input.GetButton("Jump") == true)
+        if (Input.GetButton("Jump"))
         { return true; }
         return false;
     }
+    // jump button held down ^
 
     public bool GetJumpButtonDown()
     {
-        if (Input.GetButtonDown("Jump") == true)
+        if (Input.GetButtonDown("Jump"))
         { return true; }
         return false;
     }
-    // jump button ^
+    // jump button pressed ^
 
     public float Xaxis
     {
         get { return Input.GetAxisRaw("Horizontal"); }
     }
+    // horizontal left joystick axis ^
 
     public float Yaxis
     {
         get { return Input.GetAxisRaw("Down"); }
     }
-
+    // vertical left joystick axis ^
 }
