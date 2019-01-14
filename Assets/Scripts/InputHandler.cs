@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputHandler
 {
-
     public bool GetInteractButton()
     {
         if (Input.GetButtonDown("Interact") == true)
@@ -35,9 +32,14 @@ public class InputHandler
     }
     // jump button ^
 
-    public float Move(float axis)
+    public float Xaxis
     {
-        axis = Input.GetAxisRaw("Horizontal");
-        return axis;
+        get { return Input.GetAxisRaw("Horizontal"); }
     }
+
+    public float Yaxis
+    {
+        get { return Input.GetAxisRaw("Down"); }
+    }
+
 }
