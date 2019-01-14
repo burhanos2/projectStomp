@@ -550,11 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483b60fef3f074ba981bd65688c3bb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isJumping: 0
   jumpForce: 10
   fallSpeed: 5.6
   jumpTime: 0.3
-  initialMultiplier: 2.3
+  initialMultiplier: 2
 --- !u!61 &1084660176
 BoxCollider2D:
   m_ObjectHideFlags: 0

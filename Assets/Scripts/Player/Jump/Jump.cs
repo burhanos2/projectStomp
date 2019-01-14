@@ -13,10 +13,10 @@ public class Jump : MonoBehaviour
 
     //variables
     [SerializeField]
-    private readonly float jumpForce = 10,
-                fallSpeed = 0.1f,
-                   jumpTime = 1f,
-          initialMultiplier = 3f;
+    protected float jumpForce = 10,
+                fallSpeed = 5.6f,
+                   jumpTime = 0.3f,
+          initialMultiplier = 2f;
 
     //handling variables
     private float jumpTimeCounter;
