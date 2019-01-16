@@ -23,13 +23,6 @@ public class Jump : MonoBehaviour
 
     // classes
     private Rigidbody2D rb;
-
-    //  [SerializeField]
-    //  private AudioSource audioSource;
-
-    // [SerializeField]
-    // private AudioClip jumpSound;
-
     private GroundedCheck groundCheck;
 
 
@@ -37,8 +30,7 @@ public class Jump : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpButt = new InputHandler();
-        // audioSource = GetComponent<AudioSource>();
+        jumpButt = GetComponent<InputHandler>();
         groundCheck = GetComponent<GroundedCheck>();
     }
 
@@ -59,7 +51,6 @@ public class Jump : MonoBehaviour
         //check if input goes down while grounded
         if (groundCheck.Grounded && jumpButt.GetJumpButtonDown())
         {
-            //audioSource.PlayOneShot(jumpSound);
             isJumping = true;
             jumpTimeCounter = jumpTime;
             rb.velocity = new Vector2(rb.velocity.x, (jumpForce * initialMultiplier));

@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 
-public class InputHandler
+public class InputHandler : MonoBehaviour
 {
+    public int playerNumber = 1;
+
+    private string interactButton = "Interact", jumpButton = "Jump", horizontalAxis = "Horizontal", verticalAxis = "Down";
+
     public bool GetInteractButton()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown(interactButton + playerNumber))
         { return true; }
         return false;
     }
@@ -12,7 +16,7 @@ public class InputHandler
 
     public bool GetJumpButtonUp()
     {
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp(jumpButton + playerNumber))
         { return true; }
         return false;
     }
@@ -20,7 +24,7 @@ public class InputHandler
 
     public bool GetJumpButton()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton(jumpButton + playerNumber))
         { return true; }
         return false;
     }
@@ -28,7 +32,7 @@ public class InputHandler
 
     public bool GetJumpButtonDown()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown(jumpButton + playerNumber))
         { return true; }
         return false;
     }
@@ -36,13 +40,13 @@ public class InputHandler
 
     public float Xaxis
     {
-        get { return Input.GetAxisRaw("Horizontal"); }
+        get { return Input.GetAxisRaw(horizontalAxis + playerNumber); }
     }
     // horizontal left joystick axis ^
 
     public float Yaxis
     {
-        get { return Input.GetAxisRaw("Down"); }
+        get { return Input.GetAxisRaw(verticalAxis + playerNumber); }
     }
     // vertical left joystick axis ^
 }

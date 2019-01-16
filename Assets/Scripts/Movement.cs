@@ -6,27 +6,36 @@ public class Movement : MonoBehaviour {
 
     private InputHandler handler;
     private PlayerInfo playerInfo;
+    private Rigidbody2D rb2d;
 
-    private readonly float speedMultiplier = 2.5f;
+    private readonly float speedMultiplier = 100f;
 
     private void Awake()
     {
-        handler = new InputHandler();
-        playerInfo = GetComponent<PlayerInfo>();        
+        handler = GetComponent<InputHandler>();
+        playerInfo = GetComponent<PlayerInfo>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
-
-    
 
     private void Update()
     {
-        
+        if (handler.Xaxis > -0.1f && handler.Xaxis < 0.1f)
+        {
+            rb2d.velocity *= 0;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 velocity = transform.right * playerInfo.Speed * speedMultiplier * Time.fixedDeltaTime;
+
         if (handler.Xaxis < 0)
         {
-            transform.Translate(-playerInfo.Speed * speedMultiplier * Time.deltaTime, 0, 0);
+            rb2d.velocity = -velocity;
         }
         if (handler.Xaxis > 0)
         {
-            transform.Translate(playerInfo.Speed * speedMultiplier * Time.deltaTime, 0, 0);
+            rb2d.velocity = velocity;
         }
         
     }
