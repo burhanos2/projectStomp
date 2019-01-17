@@ -9,6 +9,10 @@ public class PlayerInfo : MonoBehaviour
     private readonly float speed;
     private int health;
     private readonly int maxHealth = 3;
+    private int score;
+
+    public int Score
+    { get; set; }
 
     public bool Invincible
     { get; set; }
