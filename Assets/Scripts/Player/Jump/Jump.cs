@@ -12,14 +12,19 @@ public class Jump : MonoBehaviour
     public bool Jumping { get { return isJumping; } }
 
     //variables
+    [Tooltip("lowJumpMultiplier should be less than fallMultiplier")]
     [SerializeField]
-    protected float jumpForce = 10,
-                fallSpeed = 5.6f,
-                   jumpTime = 0.3f,
-          initialMultiplier = 2f;
+    [Range(0.0f, 20.0f)]
+    protected float fallMultiplier = 3f, lowJumpMultiplier = 2f;
 
-    //handling variables
-    private float jumpTimeCounter;
+    [SerializeField]
+    [Tooltip("make sure jumpForce is higher than velocityMinimum")]
+    [Range(0.1f, 20.0f)]
+    protected float jumpForce = 10;
+
+    [SerializeField]
+    [Range(0.0f, 3.0f)]
+    protected float velocityMinimum = 0;
 
     // classes
     private Rigidbody2D rb;
@@ -38,36 +43,20 @@ public class Jump : MonoBehaviour
     {
         DoJump();
         DoFall();
-    }
 
-    private void ZeroVel()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        Debug.Log(rb.velocity);
     }
-    //just a shortcut to make velocity zero without cancelling horizontal movement
 
     private void DoJump()
     {
         //check if input goes down while grounded
         if (groundCheck.Grounded && jumpButt.GetJumpButtonDown())
         {
+            // play sound here
             isJumping = true;
-            jumpTimeCounter = jumpTime;
-            rb.velocity = new Vector2(rb.velocity.x, (jumpForce * initialMultiplier));
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        //check if input is held while jumping
-        if (jumpButt.GetJumpButton() && isJumping)
-        {
-            if (jumpTimeCounter > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false;
-            }
-        }
+       
         //check if input is released (up) or if no input
         if (jumpButt.GetJumpButtonUp() || !jumpButt.GetJumpButton())
         {
@@ -77,10 +66,18 @@ public class Jump : MonoBehaviour
 
     private void DoFall()
     {
-        if (!groundCheck.Grounded && !isJumping)
+        if (!groundCheck.Grounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -fallSpeed);
-        }
+            // this changes the gravity to make the player jump low
+            if (rb.velocity.y < velocityMinimum)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > velocityMinimum && !jumpButt.GetJumpButton())
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
+        } 
     }
      
 }
