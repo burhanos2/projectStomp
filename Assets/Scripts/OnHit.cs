@@ -5,45 +5,60 @@ using UnityEngine;
 public class OnHit {
 
     private PlayerInfo playerInfo = new PlayerInfo();
+    private AdjustTime adjustTime = new AdjustTime();
 
-    public void RemoveHP(int amount)
+    private readonly float effectMultiplier = 1.25f;
+    private readonly float durationOfEvents = 2;
+
+    public void ExecuteDamage()
     {
-        playerInfo.Health -=1;
+        RemoveHP(1);
+
+        if (playerInfo.Health > 0)
+        {
+            MakeInvincible(durationOfEvents);
+            IncreasePlayerSpeed(effectMultiplier, durationOfEvents);
+            SlowDown(effectMultiplier, durationOfEvents);
+        }
+    }
+
+    private void SlowDown(float multiplier, float waitTime)
+    {
+        adjustTime.LimitedTimeSwitch(multiplier, waitTime);
+    }
+
+    private void RemoveHP(int amount)
+    {
+        playerInfo.Health -= amount;
         CheckIfDead();
     }
 
 
-    public void MakeInvincible(bool value)
+    private void MakeInvincible(float waitTime)
     {
-        playerInfo.Invincible = value;
         
         if (!playerInfo.Invincible) // als de player niet invincible is
         {
-            // hier komt de code wanneer de player niet invincible is (dus een coroutine die een aantal seconden duurt) <<<<<<<<<<<<<<<<<<<<<<
             playerInfo.Invincible = true;
-        } else if (playerInfo.Invincible) // als de player wel invincible is
+            adjustTime.Wait(waitTime);
+            playerInfo.Invincible = false;
+        }
+
+        else if (playerInfo.Invincible) // als de player wel invincible is
         {
             playerInfo.Invincible = false;
         }
-    }
-    /* \\\\\\\\\\ ik heb ff hulp nodig van iemand die een loop weet die wel in een script zonder MonoBehaviour kan//////////
+        return;
+    }      
       
-      
-    public void IncreaseSpeed(float multiplier, float waitDuration)
+    private void IncreasePlayerSpeed(float multiplier, float waitTime)
     {
-        float oldSpeed = playerInfo.Speed;
+        float oldSpeed = playerInfo.Speed; // keep old player speed in memory
         playerInfo.Speed *= multiplier;
-        yield return StartCoroutine(SetOldSpeed(3)); <<<<<<<<<<<<<<<<<<<<<<
-        
-        playerInfo.Speed = oldSpeed;
-    }
+        adjustTime.Wait(waitTime);
 
-    private IEnumerator SetOldSpeed(float waitTime) <<<<<<<<<<<<<<<<<<<<<<
-    {
-        yield return new WaitForSeconds(waitTime);
-        playerInfo.Speed = oldSpeed;
-    }
-    */
+        playerInfo.Speed = oldSpeed; // reset old speed
+    }    
 
     private void CheckIfDead()
     {
