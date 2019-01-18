@@ -2,49 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Raycasts))]
 public class Jump : MonoBehaviour
 {
-    //jumpbutton define
-    private InputHandler jumpButt;
+    //classes
+    private PlayerInput jumpButt;
+    private Rigidbody2D rb;
+    private Raycasts groundCheck;
 
     // isjumping
     private bool isJumping = false;
     public bool Jumping { get { return isJumping; } }
 
     //variables
-    [Tooltip("lowJumpMultiplier should be less than fallMultiplier")]
-    [SerializeField]
-    [Range(0.0f, 20.0f)]
-    protected float fallMultiplier = 3f, lowJumpMultiplier = 2f;
 
-    [SerializeField]
-    [Tooltip("make sure jumpForce is higher than velocityMinimum")]
-    [Range(0.1f, 20.0f)]
-    protected float jumpForce = 10;
+   // [Tooltip("lowJumpMultiplier should be less than fallMultiplier")][SerializeField][Range(0.0f, 20.0f)]
+    private float fallMultiplier = 6.7f, lowJumpMultiplier = 5f;
 
-    [SerializeField]
-    [Range(0.0f, 3.0f)]
-    protected float velocityMinimum = 0;
+   // [SerializeField] [Tooltip("make sure jumpForce is higher than velocityMinimum")] [Range(0.1f, 20.0f)]
+    private float jumpForce = 12.3f;
 
-    // classes
-    private Rigidbody2D rb;
-    private GroundedCheck groundCheck;
-
-
+  //  [SerializeField][Range(0.0f, 10.0f)]
+    private float velocityMinimum = 10;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpButt = GetComponent<InputHandler>();
-        groundCheck = GetComponent<GroundedCheck>();
+        jumpButt = GetComponent<PlayerInput>();
+        groundCheck = GetComponent<Raycasts>();
     }
 
     private void FixedUpdate()
     {
         DoJump();
         DoFall();
-
-        Debug.Log(rb.velocity);
     }
 
     private void DoJump()

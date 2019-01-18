@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundedCheck : MonoBehaviour
+public class Raycasts : MonoBehaviour
 {
     protected LayerMask GroundMask;
 
