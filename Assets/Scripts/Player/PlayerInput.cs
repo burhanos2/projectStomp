@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     public int playerNumber = 1;
 
-    private string interactButton = "Interact", jumpButton = "Jump", horizontalAxis = "Horizontal", verticalAxis = "Down";
+    private readonly string interactButton = "Interact", jumpButton = "Jump", horizontalAxis = "Horizontal", verticalAxis = "Down";
 
     public bool GetInteractButton()
     {
