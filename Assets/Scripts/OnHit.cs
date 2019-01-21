@@ -6,6 +6,7 @@ public class OnHit {
 
     private PlayerInfo playerInfo = new PlayerInfo();
     private AdjustTime adjustTime = new AdjustTime();
+    private Addscore addscore = new Addscore();
 
     private readonly float effectMultiplier = 1.25f;
     private readonly float durationOfEvents = 2;
