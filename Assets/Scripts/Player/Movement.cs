@@ -7,14 +7,16 @@ public class Movement : MonoBehaviour {
     private PlayerInfo playerInfo;
     private Rigidbody2D rb2d;
     private Raycasts groundCheck;
+    private Facing facing = Facing.Neutral;
+    private bool canWallJump = false;
+
 
     // isjumping
     private bool isJumping = false;
     public bool Jumping { get { return isJumping; } }
 
     //variables
-    private readonly float speedMultiplier = 100f, 
-                           fallMultiplier = 6.7f, 
+    private readonly float fallMultiplier = 6.7f, 
                            lowJumpMultiplier = 5f, 
                            jumpForce = 12.3f, 
                            velocityMinimum = 10;
@@ -31,28 +33,32 @@ public class Movement : MonoBehaviour {
     {
         if (handler.Xaxis > -0.1f && handler.Xaxis < 0.1f)
         {
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            //Debug.Log(rb2d.velocity.x + " before");
+            facing = Facing.Neutral;
+            //rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            //Debug.Log(rb2d.velocity.x + " after");
         }
+        ExecuteWallJump();
+        DoJump();
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
-        DoJump();
         DoFall();
     }
 
     private void MovePlayer()
     {
-        float velocity = playerInfo.Speed * speedMultiplier * Time.fixedDeltaTime;
-
         if (handler.Xaxis < 0)
         {
-            rb2d.velocity = new Vector2(-velocity, rb2d.velocity.y);
+            facing = Facing.Left;
+            rb2d.velocity = new Vector2(-playerInfo.Speed, rb2d.velocity.y);
         }
         if (handler.Xaxis > 0)
         {
-            rb2d.velocity = new Vector2(velocity, rb2d.velocity.y);
+            facing = Facing.Right;
+            rb2d.velocity = new Vector2(playerInfo.Speed, rb2d.velocity.y);
         }
     }
 
@@ -89,4 +95,32 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            canWallJump = true;
+        }
+    }
+
+    private void ExecuteWallJump()
+    {
+        if (canWallJump)
+        {
+            canWallJump = false;
+            if (facing == Facing.Left && !groundCheck.Grounded && handler.GetJumpButtonDown())
+            {
+                Debug.Log("wall is hit");
+                //rb2d.AddForce(new Vector2(jumpForce / 2, jumpForce / 2), ForceMode2D.Impulse);
+                rb2d.AddForce(new Vector2(50, 50), ForceMode2D.Impulse);
+                return;
+            }
+            else if (facing == Facing.Right && !groundCheck.Grounded && handler.GetJumpButtonDown())
+            {
+                rb2d.AddForce(new Vector2(-jumpForce / 2, jumpForce / 2), ForceMode2D.Impulse);
+                return;
+            }
+
+        }
+    }
 }

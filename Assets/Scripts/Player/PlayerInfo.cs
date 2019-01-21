@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Facing { Left, Right, Neutral };
+
 public class PlayerInfo : MonoBehaviour
 {
 
@@ -10,6 +12,7 @@ public class PlayerInfo : MonoBehaviour
     private int health;
     private readonly int maxHealth = 3;
     private int score;
+    
 
     public int Score
     { get; set; }
@@ -36,7 +39,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Awake()
     {
-        Speed = 3;
+        Speed = 5;
         Health = maxHealth;
     }
 
