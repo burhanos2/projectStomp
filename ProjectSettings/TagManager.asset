@@ -5,45 +5,40 @@ TagManager:
   serializedVersion: 2
   tags:
   - platform
-<<<<<<< HEAD
-  - PlayerHead
-  - PlayerFeet
-=======
   - Wall
->>>>>>> 1253ee97716115419d66d2c7c6168ac237ce77fb
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
-  - 
-  - 
+  -
+  -
   - Ground
   - PlayerHead
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
   m_SortingLayers:
   - name: Default
     uniqueID: 0
