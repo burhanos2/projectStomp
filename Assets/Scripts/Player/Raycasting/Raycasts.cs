@@ -4,31 +4,51 @@ using UnityEngine;
 
 public class Raycasts : MonoBehaviour
 {
-    protected LayerMask GroundMask;
+    private LayerMask groundMask;
+    private LayerMask wallMask;
+    private Renderer rend;
 
-    [SerializeField]
-    private Vector3 vectorOffset = new Vector3(0,0,0);
-
-    protected const float CheckHeight = 0.55f;
+    private Vector3 vectorGroundOffset1;
+    private Vector3 vectorGroundOffset2;
+    private Vector3 vectorWallOffset = new Vector3(0, 0, 0);
 
     public bool Grounded {   get { return DoGroundCheck(); }   }
 
     void Awake()
     {
-        GroundMask = LayerMask.GetMask("Ground");
+        rend = GetComponent<Renderer>();
+        groundMask = LayerMask.GetMask("Ground");
+        wallMask = LayerMask.GetMask("Wall");
+        vectorGroundOffset1 = new Vector3(rend.bounds.min.x,0,0);
+        vectorGroundOffset2 = new Vector3(rend.bounds.max.x,0,0);
     }
 
     public bool DoGroundCheck()
     {
-        Debug.DrawRay(transform.localPosition + vectorOffset, -transform.up * CheckHeight, Color.cyan, 0f);
-        //
-        if (Physics2D.Raycast(transform.localPosition + vectorOffset, -transform.up, CheckHeight, GroundMask))
-        {
-                return true;
-        }
-        else
-        {
-                return false;
-        }
+        float rayCastLength = 0.6f;
+        // ground check
+        Debug.DrawRay(transform.localPosition + vectorGroundOffset1, -transform.up * rayCastLength, Color.cyan, 0f);
+        Debug.DrawRay(transform.localPosition + vectorGroundOffset2, -transform.up * rayCastLength, Color.cyan, 0f);
+
+        if (Physics2D.Raycast(transform.localPosition + vectorGroundOffset1, -transform.up, rayCastLength, groundMask))
+        { return true; }
+        if (Physics2D.Raycast(transform.localPosition + vectorGroundOffset2, -transform.up, rayCastLength, groundMask))
+        { return true; }
+        else { return false; }
+    }
+
+    public bool DoWallCheck()
+    {
+        float rayCastLength = 0.6f;
+
+        // left wall check
+        Debug.DrawRay(transform.localPosition + vectorWallOffset, -transform.right * rayCastLength, Color.red, 0f);
+        Debug.DrawRay(transform.localPosition + vectorWallOffset, transform.right * rayCastLength, Color.red, 0f);
+        if (Physics2D.Raycast(transform.localPosition + vectorWallOffset, -transform.right, rayCastLength, wallMask))
+        { return true; }
+        // right wall check
+        if (Physics2D.Raycast(transform.localPosition + vectorWallOffset, transform.right, rayCastLength, wallMask))
+        { return true; }
+        else { return false; }
     }
 }

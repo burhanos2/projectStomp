@@ -31,15 +31,18 @@ public class Movement : MonoBehaviour {
 
     private void Update()
     {
+        DoJump();
+        ExecuteWallJump();
         if (handler.Xaxis > -0.1f && handler.Xaxis < 0.1f)
         {
-            //Debug.Log(rb2d.velocity.x + " before");
             facing = Facing.Neutral;
-            //rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-            //Debug.Log(rb2d.velocity.x + " after");
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
-        ExecuteWallJump();
-        DoJump();
+
+        if (groundCheck.DoWallCheck())
+        {
+            canWallJump = true;
+        } else { canWallJump = false; }
     }
 
     private void FixedUpdate()
@@ -53,12 +56,12 @@ public class Movement : MonoBehaviour {
         if (handler.Xaxis < 0)
         {
             facing = Facing.Left;
-            rb2d.velocity = new Vector2(-playerInfo.Speed, rb2d.velocity.y);
+            rb2d.AddForce(new Vector2(-playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
         if (handler.Xaxis > 0)
         {
             facing = Facing.Right;
-            rb2d.velocity = new Vector2(playerInfo.Speed, rb2d.velocity.y);
+            rb2d.AddForce(new Vector2(playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
     }
 
@@ -95,30 +98,18 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Wall")
-        {
-            canWallJump = true;
-        }
-    }
-
     private void ExecuteWallJump()
     {
-        if (canWallJump)
+        if (canWallJump)    
         {
             canWallJump = false;
             if (facing == Facing.Left && !groundCheck.Grounded && handler.GetJumpButtonDown())
             {
-                Debug.Log("wall is hit");
-                //rb2d.AddForce(new Vector2(jumpForce / 2, jumpForce / 2), ForceMode2D.Impulse);
-                rb2d.AddForce(new Vector2(50, 50), ForceMode2D.Impulse);
-                return;
+                rb2d.velocity = new Vector2(jumpForce, jumpForce * 0.75f);
             }
             else if (facing == Facing.Right && !groundCheck.Grounded && handler.GetJumpButtonDown())
             {
-                rb2d.AddForce(new Vector2(-jumpForce / 2, jumpForce / 2), ForceMode2D.Impulse);
-                return;
+                rb2d.velocity = new Vector2(-jumpForce, jumpForce * 0.75f);
             }
 
         }
