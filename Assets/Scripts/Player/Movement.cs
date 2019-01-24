@@ -6,7 +6,8 @@ public class Movement : MonoBehaviour {
     private PlayerInput handler;
     private PlayerInfo playerInfo;
     private Rigidbody2D rb2d;
-    private Raycasts groundCheck;
+    private Raycasts rayCasts;
+    private Animator animator;
     private Facing facing = Facing.Neutral;
     private bool canWallJump = false;
 
@@ -26,23 +27,15 @@ public class Movement : MonoBehaviour {
         handler = GetComponent<PlayerInput>();
         playerInfo = GetComponent<PlayerInfo>();
         rb2d = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponent<Raycasts>();
+        rayCasts = GetComponent<Raycasts>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         DoJump();
+        CheckStates();
         ExecuteWallJump();
-        if (handler.Xaxis > -0.1f && handler.Xaxis < 0.1f)
-        {
-            facing = Facing.Neutral;
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-        }
-
-        if (groundCheck.DoWallCheck())
-        {
-            canWallJump = true;
-        } else { canWallJump = false; }
     }
 
     private void FixedUpdate()
@@ -51,15 +44,47 @@ public class Movement : MonoBehaviour {
         DoFall();
     }
 
+    private void CheckStates()
+    {
+        // check if player is not moving
+        if (handler.Xaxis > -0.1f && handler.Xaxis < 0.1f)
+        {
+            animator.SetBool("IsMoving", false);
+            facing = Facing.Neutral;
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
+
+        // check if player is touching a wall
+        if (!rayCasts.DoGroundCheck()) {
+            animator.SetBool("InAir", true);
+            if (rayCasts.DoWallCheck())
+            { canWallJump = true; }
+
+            else if (!rayCasts.DoWallCheck())
+            { canWallJump = false; }
+
+            animator.SetBool("IsWallJumping", canWallJump);
+        }
+
+        // check if player is grounded
+        if (rayCasts.DoGroundCheck())
+        {
+            animator.SetBool("InAir", false);
+            animator.SetBool("IsGrounded", true);
+        }
+    }
+
     private void MovePlayer()
     {
         if (handler.Xaxis < 0)
         {
+            animator.SetBool("IsMoving", true);
             facing = Facing.Left;
             rb2d.AddForce(new Vector2(-playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
         if (handler.Xaxis > 0)
         {
+            animator.SetBool("IsMoving", true);
             facing = Facing.Right;
             rb2d.AddForce(new Vector2(playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
@@ -68,8 +93,9 @@ public class Movement : MonoBehaviour {
     private void DoJump()
     {
         //check if input goes down while grounded
-        if (groundCheck.Grounded && handler.GetJumpButtonDown())
+        if (rayCasts.Grounded && handler.GetJumpButtonDown())
         {
+            animator.SetBool("IsJumping", true);
             // play sound here
             isJumping = true;
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -78,13 +104,14 @@ public class Movement : MonoBehaviour {
         //check if input is released (up) or if no input
         if (handler.GetJumpButtonUp() || !handler.GetJumpButton())
         {
+            animator.SetBool("IsJumping", false);
             isJumping = false;
         }
     }
 
     private void DoFall()
     {
-        if (!groundCheck.Grounded)
+        if (!rayCasts.Grounded)
         {
             // this changes the gravity to make the player jump low
             if (rb2d.velocity.y < velocityMinimum)
@@ -100,18 +127,17 @@ public class Movement : MonoBehaviour {
 
     private void ExecuteWallJump()
     {
-        if (canWallJump)    
-        {
-            canWallJump = false;
-            if (facing == Facing.Left && !groundCheck.Grounded && handler.GetJumpButtonDown())
+        if (canWallJump) { 
+            if (facing == Facing.Left)
             {
+                canWallJump = false;
                 rb2d.velocity = new Vector2(jumpForce, jumpForce * 0.75f);
             }
-            else if (facing == Facing.Right && !groundCheck.Grounded && handler.GetJumpButtonDown())
+            else if (facing == Facing.Right)
             {
+                canWallJump = false;
                 rb2d.velocity = new Vector2(-jumpForce, jumpForce * 0.75f);
             }
-
         }
     }
 }
