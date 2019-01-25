@@ -56,14 +56,19 @@ public class Movement : MonoBehaviour {
 
         // check if player is touching a wall
         if (!rayCasts.DoGroundCheck()) {
+            animator.SetBool("IsGrounded", false);
             animator.SetBool("InAir", true);
             if (rayCasts.DoWallCheck())
-            { canWallJump = true; }
+            {
+                animator.SetBool("IsWallJumping", true);
+                canWallJump = true;
+            }
 
-            else if (!rayCasts.DoWallCheck())
-            { canWallJump = false; }
-
-            animator.SetBool("IsWallJumping", canWallJump);
+            if (!rayCasts.DoWallCheck())
+            {
+                animator.SetBool("IsWallJumping", false);
+                canWallJump = false;
+            }
         }
 
         // check if player is grounded
@@ -72,6 +77,7 @@ public class Movement : MonoBehaviour {
             animator.SetBool("InAir", false);
             animator.SetBool("IsGrounded", true);
         }
+
     }
 
     private void MovePlayer()
@@ -128,12 +134,12 @@ public class Movement : MonoBehaviour {
     private void ExecuteWallJump()
     {
         if (canWallJump) { 
-            if (facing == Facing.Left)
+            if (facing == Facing.Left && handler.GetJumpButtonDown() && !rayCasts.Grounded)
             {
                 canWallJump = false;
                 rb2d.velocity = new Vector2(jumpForce, jumpForce * 0.75f);
             }
-            else if (facing == Facing.Right)
+            else if (facing == Facing.Right && handler.GetJumpButtonDown() && !rayCasts.Grounded)
             {
                 canWallJump = false;
                 rb2d.velocity = new Vector2(-jumpForce, jumpForce * 0.75f);

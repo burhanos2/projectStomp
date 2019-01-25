@@ -18,8 +18,8 @@ public class Raycasts : MonoBehaviour
         rend = GetComponentInChildren<Renderer>();
         groundMask = LayerMask.GetMask("Ground");
         wallMask = LayerMask.GetMask("Wall");
-        vectorGroundOffset1 = new Vector3(rend.bounds.min.x + 6,0,0);
-        vectorGroundOffset2 = new Vector3(rend.bounds.max.x + 6,0,0);
+        vectorGroundOffset1 = new Vector3(rend.bounds.min.x + 0,0,0);
+        vectorGroundOffset2 = new Vector3(rend.bounds.max.x + 0,0,0);
     }
 
     public bool DoGroundCheck()

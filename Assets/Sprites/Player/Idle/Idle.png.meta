@@ -1,38 +1,12 @@
 fileFormatVersion: 2
-guid: 7bad0c1a1c1a6e341b997a7e4f1e308b
+guid: 8f326299f9a28d041a411dfd48a2d3df
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Idle_Frame_1
-    21300002: Idle_Frame_2
-    21300004: Idle_Frame_3
-    21300006: Idle_Frame_4
-    21300008: Idle_Frame_Final
-    21300010: Player Sprite Sheet_0
-    21300012: Player Sprite Sheet_26
-    21300014: Player Sprite Sheet_27
-    21300016: Player Sprite Sheet_28
-    21300018: Player Sprite Sheet_29
-    21300020: Player Sprite Sheet_30
-    21300022: Player Sprite Sheet_31
-    21300024: Run_1
-    21300026: Run_2
-    21300028: Run_3
-    21300030: Run_4
-    21300032: Player Sprite Sheet_56
-    21300034: Player Sprite Sheet_57
-    21300036: Player Sprite Sheet_59
-    21300038: Player Sprite Sheet_66
-    21300040: Player Sprite Sheet_71
-    21300042: Player Sprite Sheet_72
-    21300044: Player Sprite Sheet_73
-    21300046: Player Sprite Sheet_81
-    21300048: Player Sprite Sheet_82
-    21300050: Player Sprite Sheet_83
-    21300052: Idle_1
-    21300054: Idle_2
-    21300056: Idle_3
-    21300058: Idle_4
-    21300060: Idle_Final
+    21300000: Run_0
+    21300002: Run_1
+    21300004: Run_2
+    21300006: Run_3
+    21300008: Run_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -137,101 +111,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_1
+      name: Run_0
       rect:
         serializedVersion: 2
-        x: 510
-        y: 28
-        width: 98
-        height: 196
+        x: 20
+        y: 316
+        width: 100
+        height: 195
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d5c5d5f5257f2d4cbc6d58a1fcf2cc4
+      spriteID: cf2469c416b309e458066e0532b8af23
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: Run_1
       rect:
         serializedVersion: 2
-        x: 618
-        y: 28
+        x: 157
+        y: 317
         width: 96
-        height: 194
+        height: 187
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 919046221fda7f4469312eec4e938550
+      spriteID: ee025d79233462640b384d8aa679d1af
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: Run_2
       rect:
         serializedVersion: 2
-        x: 831
-        y: 28
-        width: 101
-        height: 189
+        x: 289
+        y: 317
+        width: 99
+        height: 187
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 322fbefb17698fa46b642e63f5f018ce
+      spriteID: 74bb33eb4337b804c85f1a844e0e3e4a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_4
+      name: Run_3
       rect:
         serializedVersion: 2
-        x: 943
-        y: 28
+        x: 19
+        y: 116
         width: 89
-        height: 189
+        height: 188
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b0b61889986ad441b65e73a161b3c37
+      spriteID: 45751497963db6f42b590633d3c10dd2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_Final
+      name: Run_4
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 28
+        x: 154
+        y: 116
         width: 101
-        height: 189
+        height: 188
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5796cb16637ad34482a264b5feffd9d
+      spriteID: c5ae61a67f74c804caa7bcc273ad6a21
       vertices: []
       indices: 
       edges: []
@@ -239,7 +213,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: abd3101aec0086e418b66e1b2edab3e9
+    spriteID: 5a57a69bbe32a9d4692758198d1caad4
     vertices: []
     indices: 
     edges: []
