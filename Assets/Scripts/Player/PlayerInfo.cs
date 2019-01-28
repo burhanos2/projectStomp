@@ -4,6 +4,7 @@ using UnityEngine;
 
 enum Facing { Left, Right, Neutral };
 
+
 public class PlayerInfo : MonoBehaviour
 {
 

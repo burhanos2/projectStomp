@@ -7,7 +7,10 @@ public class Movement : MonoBehaviour {
     private PlayerInfo playerInfo;
     private Rigidbody2D rb2d;
     private Raycasts rayCasts;
+
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
+
     private Facing facing = Facing.Neutral;
     private bool canWallJump = false;
 
@@ -28,6 +31,8 @@ public class Movement : MonoBehaviour {
         playerInfo = GetComponent<PlayerInfo>();
         rb2d = GetComponent<Rigidbody2D>();
         rayCasts = GetComponent<Raycasts>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -54,21 +59,33 @@ public class Movement : MonoBehaviour {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
 
+        if (handler.Xaxis != 0)
+        {
+            if (facing == Facing.Left)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (facing == Facing.Right)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+
         // check if player is touching a wall
         if (!rayCasts.DoGroundCheck()) {
             animator.SetBool("IsGrounded", false);
             animator.SetBool("InAir", true);
-            if (rayCasts.DoWallCheck())
+            if (rayCasts.DoWallCheck() != DirectionOfWall.Nothing)
             {
                 animator.SetBool("IsWallJumping", true);
                 canWallJump = true;
             }
+        }
 
-            if (!rayCasts.DoWallCheck())
-            {
-                animator.SetBool("IsWallJumping", false);
-                canWallJump = false;
-            }
+        if (rayCasts.DoWallCheck() == DirectionOfWall.Nothing)
+        {
+            animator.SetBool("IsWallJumping", false);
+            canWallJump = false;
         }
 
         // check if player is grounded
@@ -84,14 +101,15 @@ public class Movement : MonoBehaviour {
     {
         if (handler.Xaxis < 0)
         {
-            animator.SetBool("IsMoving", true);
             facing = Facing.Left;
+
+            animator.SetBool("IsMoving", true);
             rb2d.AddForce(new Vector2(-playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
         if (handler.Xaxis > 0)
         {
-            animator.SetBool("IsMoving", true);
             facing = Facing.Right;
+            animator.SetBool("IsMoving", true);
             rb2d.AddForce(new Vector2(playerInfo.Speed / 10, 0), ForceMode2D.Impulse);
         }
     }
@@ -133,17 +151,28 @@ public class Movement : MonoBehaviour {
 
     private void ExecuteWallJump()
     {
-        if (canWallJump) { 
-            if (facing == Facing.Left && handler.GetJumpButtonDown() && !rayCasts.Grounded)
+        if (canWallJump) {
+            if (rayCasts.DoWallCheck() == DirectionOfWall.Left)
             {
-                canWallJump = false;
-                rb2d.velocity = new Vector2(jumpForce, jumpForce * 0.75f);
+                //facing = Facing.Right;
+                if (handler.GetJumpButtonDown() && !rayCasts.Grounded)
+                {
+                    animator.SetBool("IsWallJumping", false);
+                    canWallJump = false;
+                    rb2d.velocity = new Vector2(jumpForce * 0.5f, jumpForce * 0.75f);
+                }
             }
-            else if (facing == Facing.Right && handler.GetJumpButtonDown() && !rayCasts.Grounded)
+        else if (rayCasts.DoWallCheck() == DirectionOfWall.Right)
             {
-                canWallJump = false;
-                rb2d.velocity = new Vector2(-jumpForce, jumpForce * 0.75f);
+                //facing = Facing.Left;
+                if (handler.GetJumpButtonDown() && !rayCasts.Grounded)
+                {
+                    animator.SetBool("IsWallJumping", false);
+                    canWallJump = false;
+                    rb2d.velocity = new Vector2(-jumpForce * 0.5f, jumpForce * 0.75f);
+                }
             }
+               
         }
     }
 }

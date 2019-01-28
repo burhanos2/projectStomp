@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 00e5359dd91321d49a5d884614fd5df5
+guid: 77809cef5a92bc8458771b3fa55d4959
 TextureImporter:
   fileIDToRecycleName:
-    21300000: jump_0
-    21300002: jump_1
-    21300004: jump_2
-    21300006: jump_3
+    21300000: Runda2_0
+    21300002: Runda2_1
+    21300004: Runda2_2
+    21300006: Runda2_3
+    21300008: Runda2_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -110,81 +111,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jump_0
+      name: Runda2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 100
+        x: 15
+        y: 312
+        width: 103
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f001ffe1aecab6b40a1b0a2b0d844c39
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Runda2_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 303
+        width: 109
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00bdbfa70ebefaa4e9bddc2abffe4e2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Runda2_2
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 308
+        width: 104
         height: 183
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d745b572d46f71c4fb8ff42e6675dd1b
+      spriteID: 625192a002c03a14f895ae430f64161d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_1
+      name: Runda2_3
       rect:
         serializedVersion: 2
-        x: 114
-        y: 0
-        width: 102
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45d600bede3ff7547825845d378df824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump_2
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 0
-        width: 136
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2380a5215a781d4d9b21a52b91b3b47
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump_3
-      rect:
-        serializedVersion: 2
-        x: 375
-        y: 0
-        width: 113
+        x: 15
+        y: 80
+        width: 104
         height: 188
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e775a3193965c9047becd81b265ace14
+      spriteID: 29bec0a6d73838d46ad5c484c9861338
       vertices: []
       indices: 
       edges: []
@@ -192,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: de93cc18834ea6f40b54deda72b4121d
+    spriteID: 3d35d191f3c80384aa0c521ba28f1f82
     vertices: []
     indices: 
     edges: []

@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+public enum DirectionOfWall { Left, Right, Nothing };
 
 public class Raycasts : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class Raycasts : MonoBehaviour
     private Vector3 vectorWallOffset = new Vector3(0, 0, 0);
 
     public bool Grounded {   get { return DoGroundCheck(); }   }
+
+    private DirectionOfWall directionOfWall = DirectionOfWall.Nothing;
 
     void Awake()
     {
@@ -26,8 +28,6 @@ public class Raycasts : MonoBehaviour
     {
         float rayCastLength = 1f;
         // ground check
-        Debug.DrawRay(transform.localPosition + vectorGroundOffset1, -transform.up * rayCastLength, Color.cyan, 0f);
-        Debug.DrawRay(transform.localPosition + vectorGroundOffset2, -transform.up * rayCastLength, Color.cyan, 0f);
 
         if (Physics2D.Raycast(transform.localPosition + vectorGroundOffset1, -transform.up, rayCastLength, groundMask))
         { return true; }
@@ -36,18 +36,25 @@ public class Raycasts : MonoBehaviour
         else { return false; }
     }
 
-    public bool DoWallCheck()
+    public DirectionOfWall DoWallCheck()
     {
         float rayCastLength = 0.7f;
 
         // left wall check
-        Debug.DrawRay(transform.localPosition + vectorWallOffset, -transform.right * rayCastLength, Color.red, 0f);
-        Debug.DrawRay(transform.localPosition + vectorWallOffset, transform.right * rayCastLength, Color.red, 0f);
         if (Physics2D.Raycast(transform.localPosition + vectorWallOffset, -transform.right, rayCastLength, wallMask))
-        { return true; }
+        {
+            directionOfWall = DirectionOfWall.Left;
+            return directionOfWall;
+        }
         // right wall check
         if (Physics2D.Raycast(transform.localPosition + vectorWallOffset, transform.right, rayCastLength, wallMask))
-        { return true; }
-        else { return false; }
+        {
+            directionOfWall = DirectionOfWall.Right;
+            return directionOfWall;
+        }
+        else {
+            directionOfWall = DirectionOfWall.Nothing;
+            return directionOfWall;
+        }
     }
 }
