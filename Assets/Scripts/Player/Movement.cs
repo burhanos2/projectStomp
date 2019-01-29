@@ -158,7 +158,7 @@ public class Movement : MonoBehaviour {
                 {
                     animator.SetBool("IsWallJumping", false);
                     canWallJump = false;
-                    rb2d.velocity = new Vector2(jumpForce * 0.5f, jumpForce * 0.75f);
+                    rb2d.velocity = new Vector2(jumpForce, jumpForce );
                 }
             }
         else if (rayCasts.DoWallCheck() == DirectionOfWall.Right)
@@ -167,7 +167,7 @@ public class Movement : MonoBehaviour {
                 {
                     animator.SetBool("IsWallJumping", false);
                     canWallJump = false;
-                    rb2d.velocity = new Vector2(-jumpForce * 0.5f, jumpForce * 0.75f);
+                    rb2d.velocity = new Vector2(-jumpForce, jumpForce );
                 }
             }
                
