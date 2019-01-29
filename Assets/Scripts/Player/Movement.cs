@@ -154,7 +154,6 @@ public class Movement : MonoBehaviour {
         if (canWallJump) {
             if (rayCasts.DoWallCheck() == DirectionOfWall.Left)
             {
-                //facing = Facing.Right;
                 if (handler.GetJumpButtonDown() && !rayCasts.Grounded)
                 {
                     animator.SetBool("IsWallJumping", false);
@@ -164,7 +163,6 @@ public class Movement : MonoBehaviour {
             }
         else if (rayCasts.DoWallCheck() == DirectionOfWall.Right)
             {
-                //facing = Facing.Left;
                 if (handler.GetJumpButtonDown() && !rayCasts.Grounded)
                 {
                     animator.SetBool("IsWallJumping", false);
