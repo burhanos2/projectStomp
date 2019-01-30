@@ -169,8 +169,7 @@ public class Movement : MonoBehaviour {
                     canWallJump = false;
                     rb2d.velocity = new Vector2(-jumpForce, jumpForce );
                 }
-            }
-               
+            } 
         }
     }
 }
