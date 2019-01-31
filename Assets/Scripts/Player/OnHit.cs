@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OnHit : MonoBehaviour {
 
     private PlayerInfo playerInfo;
     private Movement movement;
     private Rigidbody2D rb2d;
-    private Changescene switchScene;
 
 
     private void Awake()
@@ -15,7 +15,6 @@ public class OnHit : MonoBehaviour {
         playerInfo = GetComponent<PlayerInfo>();
         movement = GetComponent<Movement>();
         rb2d = GetComponent<Rigidbody2D>();
-        switchScene = GameObject.Find("Manager").GetComponent<Changecene>();
     }
 
     public void ExecuteDamage()
@@ -28,7 +27,7 @@ public class OnHit : MonoBehaviour {
     private void RemoveHP(int amount)
     {
         playerInfo.Health -= amount;
-        SoundManager.Instance.Play(/* sound effect damage */);
+  //     SoundManager.Instance.Play(/* sound effect damage */);
         if (playerInfo.Health <= 0)
         {
             CheckIfDead();
@@ -37,7 +36,7 @@ public class OnHit : MonoBehaviour {
 
     private void CheckIfDead()
     {
-        SoundManager.Instance.Play(/* sound effect death */);
+  //       SoundManager.Instance.Play(/* sound effect death */);
         // disable player sprite and load animation here
         Invoke("StopScene", 3);
     }
@@ -58,6 +57,6 @@ public class OnHit : MonoBehaviour {
     
     private void StopScene()
     {
-        switchScene.ChangeScene("Results");
+        SceneManager.LoadScene("Results");
     }
 }
