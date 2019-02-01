@@ -7,6 +7,10 @@ public class Pause : MonoBehaviour
     public GameObject PauseUI;
 
     private bool paused = false;
+    public bool SetPaused
+    {
+        get { return paused; } set { paused = value; }
+    }
 
     void Start()
     {
