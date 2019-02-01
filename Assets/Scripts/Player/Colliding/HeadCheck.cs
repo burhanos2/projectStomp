@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeadCheck : MonoBehaviour{
-    //  private OnHit _onHit;
-    public GameObject opponent; // calm down just testing for now
+public class HeadCheck : MonoBehaviour {
+
+    private OnHit _onHit;
+    public GameObject opponent;
+
     private void Awake()
     {
-      //  _onHit = new OnHit();
+      _onHit = GetComponentInParent<OnHit>();
     }
 
     // add it to the player head
@@ -15,8 +17,8 @@ public class HeadCheck : MonoBehaviour{
     {
         if(other.tag == "PlayerFeet")
         {
-            Debug.Log(opponent.name + " has landed a hit!");
-           // _onHit.ExecuteDamage(); 
+           _onHit.ExecuteDamage();
+            other.gameObject.GetComponentInParent<OnHit>().KnockBack(20);
         }
     }
 }

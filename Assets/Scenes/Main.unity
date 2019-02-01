@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 220498261}
   - component: {fileID: 220498260}
   - component: {fileID: 220498259}
+  - component: {fileID: 220498262}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -343,6 +344,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220498262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220498258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e9d21fc5ba61e4a90fb605e84112e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &278883745
 Prefab:
   m_ObjectHideFlags: 0
@@ -600,12 +612,22 @@ Prefab:
     - target: {fileID: 61854337308904078, guid: 1d49e6b6bbce1c54da4973468832850e,
         type: 2}
       propertyPath: m_Offset.x
-      value: 0.042216122
+      value: -0.04713273
       objectReference: {fileID: 0}
     - target: {fileID: 61854337308904078, guid: 1d49e6b6bbce1c54da4973468832850e,
         type: 2}
       propertyPath: m_Size.x
-      value: 3.7471051
+      value: 3.9258027
+      objectReference: {fileID: 0}
+    - target: {fileID: 61854337308904078, guid: 1d49e6b6bbce1c54da4973468832850e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.03524995
+      objectReference: {fileID: 0}
+    - target: {fileID: 61854337308904078, guid: 1d49e6b6bbce1c54da4973468832850e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.3780923
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d49e6b6bbce1c54da4973468832850e, type: 2}
@@ -654,6 +676,11 @@ Prefab:
       propertyPath: opponent
       value: 
       objectReference: {fileID: 1120561283}
+    - target: {fileID: 114870981692625472, guid: e2ff306a37bbcf7409c0ae45d401dc9d,
+        type: 2}
+      propertyPath: playerNumber
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2ff306a37bbcf7409c0ae45d401dc9d, type: 2}
   m_IsPrefabAsset: 0
@@ -741,7 +768,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4738168768965460, guid: 1cc46f73cd1a6f94693d3564daef2595, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.865563
+      value: -10.42
       objectReference: {fileID: 0}
     - target: {fileID: 4738168768965460, guid: 1cc46f73cd1a6f94693d3564daef2595, type: 2}
       propertyPath: m_LocalPosition.y
@@ -774,12 +801,12 @@ Prefab:
     - target: {fileID: 61135524701525858, guid: 1cc46f73cd1a6f94693d3564daef2595,
         type: 2}
       propertyPath: m_Offset.x
-      value: -0.16700935
+      value: -0.41155672
       objectReference: {fileID: 0}
     - target: {fileID: 61135524701525858, guid: 1cc46f73cd1a6f94693d3564daef2595,
         type: 2}
       propertyPath: m_Size.x
-      value: 3.8806076
+      value: 3.3915129
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc46f73cd1a6f94693d3564daef2595, type: 2}

@@ -19,14 +19,13 @@ public class OnHit : MonoBehaviour {
 
     public void ExecuteDamage()
     {
+        RemoveHP(1);     
         Camera.main.GetComponent<ScreenShake>().Shake(0.2f, 4);
-        KnockBack(3);
-        RemoveHP(1);        
     }
 
     private void RemoveHP(int amount)
     {
-        playerInfo.Health -= amount;
+        playerInfo.Health = amount;
   //     SoundManager.Instance.Play(/* sound effect damage */);
         if (playerInfo.Health <= 0)
         {
@@ -41,17 +40,18 @@ public class OnHit : MonoBehaviour {
         Invoke("StopScene", 3);
     }
 
-    private void KnockBack(float force)
+    public void KnockBack(float force)
     {
-        float randomNumber = Random.Range(0, 1);
+        float randomNumber = Random.Range(0, 2);
+        float randomVelocityFactor = Random.Range(0.5f, 1f);
 
         if (randomNumber == 0)
         {
-            rb2d.AddForce(new Vector3(-force, force, 0), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector3(-force * randomVelocityFactor, force, 0), ForceMode2D.Impulse);
         }
         else if (randomNumber == 1)
         {
-            rb2d.AddForce(new Vector3(force, force, 0), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector3(force * randomVelocityFactor, force, 0), ForceMode2D.Impulse);
         }
     }
     

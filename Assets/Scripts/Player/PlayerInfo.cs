@@ -30,11 +30,18 @@ public class PlayerInfo : MonoBehaviour
 
         set
         {
-            if (value <= maxHealth)
+            if (value < maxHealth)
             {
-                health = value;
+                health = health - value;
             }
-            else { return; }
+            else if(value == maxHealth)
+            {
+                health = maxHealth;
+            }
+            else
+            {
+                return;
+            }
         }
     }
 
@@ -43,5 +50,4 @@ public class PlayerInfo : MonoBehaviour
         Speed = 5;
         Health = maxHealth;
     }
-
 }

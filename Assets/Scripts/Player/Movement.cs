@@ -56,7 +56,10 @@ public class Movement : MonoBehaviour {
         {
             animator.SetBool("IsMoving", false);
             facing = Facing.Neutral;
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            if(rayCasts.Grounded)
+            {
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            }
         }
 
         if (handler.Xaxis != 0)
