@@ -52,5 +52,5 @@ public class ScreenShake : MonoBehaviour
         shakeIntensity = intensityValue / 100;
     }
     // you can call in the function with this line of code
-    // Camera.main.GetComponent<ScreenShake>().Shake(0.2f, 4); 
+    // Camera.main.GetComponent<ScreenShake>().Shake(0.2f, 4);
 }
