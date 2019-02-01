@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 public class OnHit : MonoBehaviour {
 
     private PlayerInfo playerInfo;
-    private Movement movement;
     private Rigidbody2D rb2d;
-
+    private Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
-        movement = GetComponent<Movement>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -26,7 +25,7 @@ public class OnHit : MonoBehaviour {
     private void RemoveHP(int amount)
     {
         playerInfo.Health = amount;
-  //     SoundManager.Instance.Play(/* sound effect damage */);
+        // SoundManager.Instance.Play(/* sound effect damage */);
         if (playerInfo.Health <= 0)
         {
             CheckIfDead();
@@ -35,9 +34,9 @@ public class OnHit : MonoBehaviour {
 
     private void CheckIfDead()
     {
-  //       SoundManager.Instance.Play(/* sound effect death */);
-        // disable player sprite and load animation here
-        Invoke("StopScene", 3);
+        // SoundManager.Instance.Play(/* sound effect death */);
+        animator.Play("Death");
+        Invoke("StopScene", 0.667f);
     }
 
     public void KnockBack(float force)
