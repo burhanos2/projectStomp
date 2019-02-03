@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Artsists: \n\n-Quincy\n-Brett\n-Jelle"
+  m_Text: "Artists: \n\n-Quincy\n-Brett\n-Jelle"
 --- !u!222 &275150449
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class Pause : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetKeyDown("joystick 1 button 9")))
+        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetKeyDown("joystick 1 button 7")))
         {
 
             paused = !paused;
