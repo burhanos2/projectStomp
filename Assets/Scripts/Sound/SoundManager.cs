@@ -23,17 +23,9 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Play(AudioClip clip)
+    public void PlayOneShot(AudioClip clip)
     {
         sound.clip = clip;
-        sound.Play();
+        sound.PlayOneShot(clip);
     }
-
-    public void RandomSoundEffect(params AudioClip[] clips)
-    {
-        int randomIndex = Random.Range(0, clips.Length);
-        sound.clip = clips[randomIndex];
-        sound.Play();
-    }
-
 }
